@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.globalfarm.nichesite.org/sitemap.xml
