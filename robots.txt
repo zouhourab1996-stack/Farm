@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://www.globalfarm.nichesite.org/sitemap.xml
+Disallow: /search
+Sitemap: https://zouhourab1996-stack.github.io/Farm/sitemap.xml
