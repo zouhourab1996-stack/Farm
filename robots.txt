@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /search
 Sitemap: https://zouhourab1996-stack.github.io/Farm/sitemap.xml

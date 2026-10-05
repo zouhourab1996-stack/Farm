@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Grove Wall — Every Donation, Public Forever</title>
+<meta name="description" content="The public wall of every on-chain donation to the Olive Grove Project. Each USDT transfer is a verifiable receipt on the TRON blockchain — see exactly who gave, when, and how many trees it funds.">
+<link rel="canonical" href="https://zouhourab1996-stack.github.io/Farm/grove.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Grove Wall — Every Donation, Public Forever">
+<meta property="og:description" content="Every donation to the olive grove, streamed live from the blockchain.">
+<meta property="og:image" content="https://zouhourab1996-stack.github.io/Farm/og.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1W7PC1JDKH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1W7PC1JDKH');</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="/Farm/"><img src="favicon.svg" alt=""> The Olive Grove Project</a>
+  <nav class="main">
+    <a href="/Farm/">Home</a>
+    <a href="/Farm/transparency.html">Transparency</a>
+    <a href="/Farm/story.html">Story</a>
+    <a href="/Farm/faq.html">FAQ</a>
+    <a class="cta" href="/Farm/#donate">Plant a tree 🫒</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <h1>The Grove Wall</h1>
+  <p class="lead">Every donation that has ever arrived — streamed straight from the blockchain, in front of everyone. Nothing here can be edited, hidden or invented. Each entry is a tree in the ground.</p>
+  <span class="live-chip"><span class="dot"></span> <span id="grove-raised">… loading live total</span> received on-chain</span>
+</div></section>
+
+<section><div class="wrap">
+  <div class="stats" style="margin-bottom:8px">
+    <div class="stat"><div class="n" id="grove-trees">…</div><div class="l">trees funded so far (1 tree = $10)</div></div>
+    <div class="stat"><div class="n" id="grove-pct">0%</div><div class="l">of the $5,000 first-grove goal</div><div class="progress"><i id="grove-bar" style="width:0%"></i></div><div class="small-note" id="grove-note" style="margin-top:8px"><a data-tronscan href="#" target="_blank" rel="noopener">Verify on Tronscan ↗</a></div></div>
+  </div>
+  <div id="grove-wall"><div class="grove-entry"><span class="seed">🫒</span><div><b>Loading the grove from the blockchain…</b><div class="small-note">This reads the public TRON ledger directly — usually under a second.</div></div></div></div>
+  <p class="small-note" style="margin-top:18px">Donor names never appear on-chain (blockchains store addresses, not names) — the wall shows real transfers, verifiable one click away. Donated? <a href="/Farm/claim.html">Generate your named certificate →</a></p>
+</div></section>
+
+<footer class="site"><div class="wrap">
+  <div class="cols">
+    <div><b style="color:#eef0e2;font-family:var(--serif)">The Olive Grove Project</b><br><span data-wallet>TK5UxcvuY57FvcQbsqYqxKxkBvQwrmaDQm</span><br><span class="small-note" style="color:#9aa389">USDT · TRC-20 only</span></div>
+    <div><a href="/Farm/">Home</a><br><a href="/Farm/transparency.html">Transparency</a><br><a href="/Farm/claim.html">Your certificate</a></div>
+  </div>
+  <div class="legal">An independent initiative by Anis Touati. Not a registered charity. Send USDT on TRC-20 only.</div>
+</div></footer>
+<script src="app.js"></script>
+</body>
+</html>
