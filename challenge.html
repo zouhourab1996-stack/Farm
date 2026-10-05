@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The World Grove Challenge — Which Country Will Plant the Most Trees?</title>
+<meta name="description" content="A global game with a real grove at stake: donate $10, plant an olive tree, fly your country's flag on it. Live tallies by country — and the blockchain as referee. Which nation plants the most trees in Tunisia?">
+<link rel="canonical" href="https://olivegrove.bond/challenge.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The World Grove Challenge 🌍">
+<meta property="og:description" content="Which country will plant the most olive trees in Tunisia? $10 = one tree = your flag on the grove wall.">
+<meta property="og:image" content="https://olivegrove.bond/og.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1W7PC1JDKH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1W7PC1JDKH');</script>
+<link rel="stylesheet" href="styles.css">
+<style>
+.flagwall{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:26px}
+.flag{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 10px;text-align:center}
+.flag .f{font-size:2rem;line-height:1}
+.flag .c{font-size:.8rem;font-weight:700;margin-top:6px;color:var(--deep)}
+.flag .t{font-size:.78rem;color:#6a7263;margin-top:2px}
+.flag.lead{border:2px solid var(--gold);box-shadow:0 3px 14px rgba(185,149,69,.25)}
+.flag .t b{color:var(--olive)}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="/"><img src="favicon.svg" alt=""> The Olive Grove Project</a>
+  <nav class="main">
+    <a href="/grove.html">The Grove</a>
+    <a href="/projects.html">Projects</a>
+    <a href="/challenge.html">Challenge</a>
+    <a href="/story.html">Story</a>
+    <a href="/faq.html">FAQ</a>
+    <a class="cta" href="/#donate">Plant a tree 🫒</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <h1>🌍 The World Grove Challenge</h1>
+  <p class="lead">One grove in Tunisia. Every country in the race. $10 plants an olive tree and flies your flag on it — the live total is refereed by the blockchain, not by us. Which nation will stand tallest when the first grove is planted?</p>
+  <span class="live-chip"><span class="dot"></span> <span id="grove-raised">… loading live total</span> planted on-chain so far</span>
+</div></section>
+
+<section><div class="wrap">
+  <p class="kicker">How the game works</p>
+  <h2 class="sec">Plant a Tree, Fly Your Flag</h2>
+  <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+    <div class="card"><h3>1 · Donate $10</h3><p>Send USDT (TRC-20) — the transfer lands on the public blockchain within seconds. <a href="/#donate">Wallet &amp; QR →</a></p></div>
+    <div class="card"><h3>2 · Claim your country</h3><p>Generate your <a href="/claim.html">adoption certificate</a> with your country — its flag prints right on it, next to your trees.</p></div>
+    <div class="card"><h3>3 · Fly the flag</h3><p>Share your certificate (the hashtag is #WorldGroveChallenge) or email us your country + transaction ID — your nation's tally climbs the wall.</p></div>
+    <div class="card"><h3>4 · Watch the race</h3><p>The country with the most trees when the first grove fills gets the grove's dedications written under its flag at the planting log.</p></div>
+  </div>
+
+  <div class="warn" style="border-left-color:var(--olive);background:var(--mist);color:#3c463a;border-color:var(--line)">
+    <b>How the counting stays honest:</b> the money total and every transfer are verifiable by anyone on <a data-tronscan href="#" target="_blank" rel="noopener">the public wallet ↗</a> — that part is mathematical. Country tallies are self-reported alongside transaction IDs (blockchains don't store nationality), so every flag on this wall traces to a real, checkable donation. No donation, no flag.
+  </div>
+
+  <p class="kicker" style="margin-top:44px">The leaderboard</p>
+  <h2 class="sec">Trees Planted by Country</h2>
+  <p class="small-note">Every country starts at zero — the first donor from each nation becomes its founding planter, forever. Not on the wall yet? Your $10 adds your flag.</p>
+  <div class="flagwall" id="flagwall"><div class="flag"><div class="f">🫒</div><div class="c">Loading the grove…</div></div></div>
+  <p class="small-note" style="margin-top:20px">Tallies update as certificates are shared and claims verified. The complete, unforgeable record of every donation — country or no country — is always on <a href="/grove.html">the grove wall →</a></p>
+</div></section>
+
+<footer class="site"><div class="wrap">
+  <div class="cols">
+    <div><b style="color:#eef0e2;font-family:var(--serif)">The Olive Grove Project</b><br><span data-wallet>TK5UxcvuY57FvcQbsqYqxKxkBvQwrmaDQm</span></div>
+    <div><a href="/">Home</a><br><a href="/grove.html">The Grove</a><br><a href="/claim.html">Your certificate</a></div>
+  </div>
+  <div class="legal">An independent initiative by Anis Touati. Not a registered charity. Send USDT on TRC-20 only.</div>
+</div></footer>
+<script src="app.js"></script>
+<script>
+(function(){
+  var COUNTRIES = [["🇹🇳","Tunisia","TN"],["🇺🇸","United States","US"],["🇬🇧","United Kingdom","GB"],["🇨🇦","Canada","CA"],["🇫🇷","France","FR"],["🇩🇪","Germany","DE"],["🇪🇸","Spain","ES"],["🇮🇹","Italy","IT"],["🇳🇱","Netherlands","NL"],["🇧🇪","Belgium","BE"],["🇨🇭","Switzerland","CH"],["🇦🇹","Austria","AT"],["🇸🇪","Sweden","SE"],["🇳🇴","Norway","NO"],["🇩🇰","Denmark","DK"],["🇫🇮","Finland","FI"],["🇮🇪","Ireland","IE"],["🇵🇹","Portugal","PT"],["🇵🇱","Poland","PL"],["🇨🇿","Czechia","CZ"],["🇷🇴","Romania","RO"],["🇬🇷","Greece","GR"],["🇹🇷","Türkiye","TR"],["🇺🇦","Ukraine","UA"],["🇦🇪","UAE","AE"],["🇸🇦","Saudi Arabia","SA"],["🇶🇦","Qatar","QA"],["🇰🇼","Kuwait","KW"],["🇪🇬","Egypt","EG"],["🇲🇦","Morocco","MA"],["🇩🇿","Algeria","DZ"],["🇯🇴","Jordan","JO"],["🇧🇷","Brazil","BR"],["🇲🇽","Mexico","MX"],["🇦🇷","Argentina","AR"],["🇨🇱","Chile","CL"],["🇨🇴","Colombia","CO"],["🇻🇪","Venezuela","VE"],["🇦🇺","Australia","AU"],["🇳🇿","New Zealand","NZ"],["🇯🇵","Japan","JP"],["🇰🇷","South Korea","KR"],["🇨🇳","China","CN"],["🇮🇳","India","IN"],["🇮🇩","Indonesia","ID"],["🇸🇬","Singapore","SG"],["🇵🇰","Pakistan","PK"],["🇿🇦","South Africa","ZA"],["🇳🇬","Nigeria","NG"],["🇰🇪","Kenya","KE"],["🇸🇳","Senegal","SN"]];
+  window.GROVE_COUNTRIES = COUNTRIES;
+  function render(tallies){
+    tallies = tallies || {};
+    var rows = COUNTRIES.map(function(c){ return {flag:c[0], name:c[1], t:tallies[c[2]]||0}; });
+    rows.sort(function(a,b){ return b.t-a.t; });
+    var max = rows[0].t;
+    document.getElementById("flagwall").innerHTML = rows.map(function(r){
+      var lead = r.t>0 && r.t===max ? " lead" : "";
+      var t = r.t>0 ? "<b>"+r.t+" tree"+(r.t>1?"s":"")+"</b>" : "0 — be first 🌱";
+      return '<div class="flag'+lead+'"><div class="f">'+r.flag+'</div><div class="c">'+r.name+'</div><div class="t">'+t+'</div></div>';
+    }).join("");
+  }
+  fetch("/challenge.json", {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : {}; })
+    .then(function(j){ render(j.tallies); })
+    .catch(function(){ render({}); });
+})();
+</script>
+</body>
+</html>

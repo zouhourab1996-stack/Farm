@@ -1,0 +1,5 @@
+{
+  "updated": "2026-10-05",
+  "note": "Country tallies are self-reported alongside transaction IDs; the on-chain wallet total is the authoritative record. Update this file as certificates are shared and claims verified.",
+  "tallies": {}
+}

@@ -24,9 +24,10 @@
 <header class="site"><div class="wrap">
   <a class="brand" href="/"><img src="favicon.svg" alt=""> The Olive Grove Project</a>
   <nav class="main">
-    <a href="/">Home</a>
     <a href="/grove.html">The Grove</a>
-    <a href="/transparency.html">Transparency</a>
+    <a href="/projects.html">Projects</a>
+    <a href="/challenge.html">Challenge</a>
+    <a href="/story.html">Story</a>
     <a href="/faq.html">FAQ</a>
     <a class="cta" href="/#donate">Plant a tree 🫒</a>
   </nav>
@@ -41,6 +42,8 @@
   <div style="max-width:560px;margin:0 auto">
     <label for="cName">Your name (or the name of the person you're gifting it to)</label>
     <input type="text" id="cName" maxlength="40" placeholder="e.g. Sarah Bennett">
+    <label for="cCountry">Your country (flies on the certificate and the <a href="/challenge.html">World Grove Challenge</a> wall)</label>
+    <select id="cCountry"></select>
     <label for="cAmt">Amount donated (USDT)</label>
     <input type="number" id="cAmt" min="1" step="any" placeholder="e.g. 25">
     <label for="cTx">Transaction ID (optional — from Tronscan)</label>
@@ -85,7 +88,10 @@
     for(var j=0;j<4;j++){ctx.fillStyle=j%2?"#3f5326":"#4a6330";ctx.beginPath();ctx.arc(30+j*32,14+(j%2)*10,10,0,Math.PI*2);ctx.fill();}
     ctx.restore();
   }
-  function draw(name,usdt,tx){
+  var COUNTRIES=[["🇹🇳","Tunisia","TN"],["🇺🇸","United States","US"],["🇬🇧","United Kingdom","GB"],["🇨🇦","Canada","CA"],["🇫🇷","France","FR"],["🇩🇪","Germany","DE"],["🇪🇸","Spain","ES"],["🇮🇹","Italy","IT"],["🇳🇱","Netherlands","NL"],["🇧🇪","Belgium","BE"],["🇨🇭","Switzerland","CH"],["🇦🇹","Austria","AT"],["🇸🇪","Sweden","SE"],["🇳🇴","Norway","NO"],["🇩🇰","Denmark","DK"],["🇫🇮","Finland","FI"],["🇮🇪","Ireland","IE"],["🇵🇹","Portugal","PT"],["🇵🇱","Poland","PL"],["🇨🇿","Czechia","CZ"],["🇷🇴","Romania","RO"],["🇬🇷","Greece","GR"],["🇹🇷","Türkiye","TR"],["🇺🇦","Ukraine","UA"],["🇦🇪","UAE","AE"],["🇸🇦","Saudi Arabia","SA"],["🇶🇦","Qatar","QA"],["🇰🇼","Kuwait","KW"],["🇪🇬","Egypt","EG"],["🇲🇦","Morocco","MA"],["🇩🇿","Algeria","DZ"],["🇯🇴","Jordan","JO"],["🇧🇷","Brazil","BR"],["🇲🇽","Mexico","MX"],["🇦🇷","Argentina","AR"],["🇨🇱","Chile","CL"],["🇨🇴","Colombia","CO"],["🇻🇪","Venezuela","VE"],["🇦🇺","Australia","AU"],["🇳🇿","New Zealand","NZ"],["🇯🇵","Japan","JP"],["🇰🇷","South Korea","KR"],["🇨🇳","China","CN"],["🇮🇳","India","IN"],["🇮🇩","Indonesia","ID"],["🇸🇬","Singapore","SG"],["🇵🇰","Pakistan","PK"],["🇿🇦","South Africa","ZA"],["🇳🇬","Nigeria","NG"],["🇰🇪","Kenya","KE"],["🇸🇳","Senegal","SN"],["🌍","Another country","XX"]];
+  var sel=document.getElementById("cCountry");
+  COUNTRIES.forEach(function(c,i){var o=document.createElement("option");o.value=i;o.textContent=c[0]+"  "+c[1];sel.appendChild(o);});
+  function draw(name,usdt,tx,country){
     ctx.fillStyle="#f9f7f0";ctx.fillRect(0,0,W,H);
     var g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#22331d");g.addColorStop(1,"#3c5a2e");
     ctx.strokeStyle="#22331d";ctx.lineWidth=10;ctx.strokeRect(34,34,W-68,H-68);
@@ -97,27 +103,29 @@
     ctx.fillStyle="#22331d";ctx.font=serif(78,true);ctx.fillText("Certificate of Adoption",W/2,290);
     ctx.fillStyle="#6a7263";ctx.font=serif(34);ctx.fillText("This certifies that",W/2,378);
     ctx.fillStyle="#22331d";ctx.font=serif(84,true);ctx.fillText(name,W/2,478);
-    ctx.fillStyle="#6a7263";ctx.fillRect(W/2-260,512,520,2);
+    if(country){ctx.fillStyle="#3c463a";ctx.font=serif(34);ctx.fillText(country[0]+"  "+country[1]+"  "+country[0],W/2,524);}
+    ctx.fillStyle="#6a7263";ctx.fillRect(W/2-260,552,520,2);
     var trees=Math.max(1,Math.floor(usdt/10));
     ctx.fillStyle="#3c463a";ctx.font=serif(40);
-    ctx.fillText("has funded the planting of "+trees+" olive tree"+(trees>1?"s":"")+" in Tunisia,",W/2,586);
-    ctx.fillText("held in trust by the first cooperative grove of this project.",W/2,640);
+    ctx.fillText("has funded the planting of "+trees+" olive tree"+(trees>1?"s":"")+" in Tunisia,",W/2,614);
+    ctx.fillText("held in trust by the first cooperative grove of this project.",W/2,666);
     ctx.fillStyle="#5c7a3a";ctx.font=serif(30,true);
-    ctx.fillText("Every funded tree is matched by a public, on-chain donation record.",W/2,716);
+    ctx.fillText("Every funded tree is matched by a public, on-chain donation record.",W/2,738);
     var d=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
-    ctx.fillStyle="#6a7263";ctx.font=serif(30);ctx.fillText("Issued "+d,W/2,786);
-    if(tx){ctx.fillStyle="#8a8f80";ctx.font="22px monospace";ctx.fillText("Tx: "+tx.slice(0,26)+(tx.length>26?"…":""),W/2,836);}
+    ctx.fillStyle="#6a7263";ctx.font=serif(30);ctx.fillText("Issued "+d,W/2,806);
+    if(tx){ctx.fillStyle="#8a8f80";ctx.font="22px monospace";ctx.fillText("Tx: "+tx.slice(0,26)+(tx.length>26?"…":""),W/2,854);}
     ctx.fillStyle="#8a8f80";ctx.font="24px monospace";
-    ctx.fillText("Verify: tronscan.org · TK5UxcvuY57FvcQbsqYqxKxkBvQwrmaDQm (TRC-20)",W/2,920);
-    ctx.strokeStyle="#dcd8c8";ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(W/2-330,952);ctx.lineTo(W/2+330,952);ctx.stroke();
-    ctx.fillStyle="#6a7263";ctx.font=serif(28);ctx.fillText("Anis Touati · Founder",W/2,990);
+    ctx.fillText("Verify: tronscan.org · TK5UxcvuY57FvcQbsqYqxKxkBvQwrmaDQm (TRC-20)",W/2,936);
+    ctx.strokeStyle="#dcd8c8";ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(W/2-330,964);ctx.lineTo(W/2+330,964);ctx.stroke();
+    ctx.fillStyle="#6a7263";ctx.font=serif(28);ctx.fillText("Anis Touati · Founder",W/2,1000);
   }
   function generate(){
     var n=document.getElementById("cName").value.trim()||"A Friend of the Grove";
     var a=parseFloat(document.getElementById("cAmt").value);
     if(!(a>0)){alert("Enter the amount you donated (in USDT) — e.g. 25");return;}
     var t=document.getElementById("cTx").value.trim();
-    draw(n,a,t);
+    var ci=parseInt(document.getElementById("cCountry").value,10);
+    draw(n,a,t,COUNTRIES[ci]||null);
     document.getElementById("certArea").style.display="block";
     document.getElementById("cPrint").style.display="inline-block";
     document.getElementById("certArea").scrollIntoView({behavior:"smooth"});
