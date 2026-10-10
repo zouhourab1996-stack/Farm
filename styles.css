@@ -81,3 +81,20 @@ footer.site .legal{border-top:1px solid rgba(255,255,255,.15);margin-top:26px;pa
 input[type=text],input[type=number]{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;font-family:var(--sans);background:#fff}
 label{font-weight:600;font-size:.9rem;display:block;margin:14px 0 6px}
 @media(max-width:720px){.wallet-box{grid-template-columns:1fr}.wallet-box img{margin:0 auto}}
+
+/* mobile polish (2026-10-10): no horizontal scroll, readable text, tap targets */
+img,video,iframe{max-width:100%;height:auto}
+.wallet-box>*{min-width:0}
+.addr,code{overflow-wrap:anywhere;word-break:break-all}
+@media(max-width:600px){
+ table.budget{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+ table.budget th,table.budget td{padding:10px 12px}
+ .card p{font-size:1rem}
+ .small-note{font-size:.9rem}
+ .card{padding:20px}
+ .wallet-box{padding:18px}
+ .wallet-box .btn{width:100%;text-align:center}
+ nav.main a{padding:10px 12px}
+ footer.site{font-size:1rem}
+ footer.site a{display:inline-block;padding:6px 0}
+}
