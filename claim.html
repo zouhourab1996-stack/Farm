@@ -20,10 +20,10 @@
 #certCanvas{width:100%;max-width:760px;height:auto;border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 30px rgba(34,51,29,.15)}
 @media print{body *{visibility:hidden}#certCanvas,.cert-area *{visibility:visible}#certCanvas{position:absolute;left:0;top:0;width:100%;max-width:none;box-shadow:none;border:none}}
 </style>
-</head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://olivegrove.bond/#organization","name":"The Olive Grove Project","url":"https://olivegrove.bond/","logo":{"@type":"ImageObject","url":"https://olivegrove.bond/favicon.svg"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Your Adoption Certificate — Generate Yours in 10 Seconds","description":"Donated to the olive grove? Generate your personalized, printable adoption certificate — your name, your trees, your date. Free, instant, no account.","url":"https://olivegrove.bond/claim.html","isPartOf":{"@type":"WebSite","@id":"https://olivegrove.bond/#website","name":"The Olive Grove Project","url":"https://olivegrove.bond/"},"publisher":{"@id":"https://olivegrove.bond/#organization"}}</script></head>
 <body>
 <header class="site"><div class="wrap">
-  <a class="brand" href="/"><img src="favicon.svg" alt=""> The Olive Grove Project</a>
+  <a class="brand" href="/"><img src="favicon.svg" alt="The Olive Grove Project logo"> The Olive Grove Project</a>
   <nav class="main">
     <a href="/invest.html">Invest in the farm 💧</a><br>
       <a href="/grove.html">The Grove</a>
@@ -56,8 +56,10 @@
       <button class="btn" id="cGen">Generate certificate</button>
       <button class="btn ghost" id="cPrint" style="display:none">🖨 Print / Save as PDF</button>
     </div>
-    <p class="small-note" style="margin-top:14px">Trees are counted as $10 = 1 seedling, matching the live on-chain counter. Your entry on the <a href="/grove.html">public grove wall</a> is the authoritative record; this certificate is your keepsake.</p>
+    <p class="small-note" style="margin-top:14px">Tree equivalents use the project estimate of $10 per seedling. Your contribution is recorded on the <a href="/grove.html">public grove wall</a>; this certificate is a personal keepsake, not proof that a tree has already been planted.</p>
   </div>
+
+  <div class="certificate-notes" style="max-width:760px;margin:28px auto 0"><h2>What your certificate means</h2><p>The certificate records the contribution details you enter and the estimated number of seedling equivalents, using the project's current $10-per-seedling calculation. It is designed as a printable keepsake and can include an optional public transaction ID so the payment can be checked independently.</p><p><b>Important:</b> an adoption certificate is not a land title, legal ownership document, or confirmation that a particular tree has already been planted. Planting takes place according to the project's funding and implementation milestones. See the <a href="/transparency.html">transparency page</a> for the latest status and the <a href="/grove.html">public grove wall</a> for donation records.</p></div>
 
   <div class="cert-area" id="certArea">
     <canvas id="certCanvas" width="1520" height="1074"></canvas>
@@ -111,8 +113,8 @@
     ctx.fillStyle="#6a7263";ctx.fillRect(W/2-260,552,520,2);
     var trees=Math.max(1,Math.floor(usdt/10));
     ctx.fillStyle="#3c463a";ctx.font=serif(40);
-    ctx.fillText("has funded the planting of "+trees+" olive tree"+(trees>1?"s":"")+" in Tunisia,",W/2,614);
-    ctx.fillText("held in trust by the first cooperative grove of this project.",W/2,666);
+    ctx.fillText("has contributed toward "+trees+" olive tree seedling"+(trees>1?"s":"")+" for the planned grove in Tunisia,",W/2,614);
+    ctx.fillText("This records a contribution, not completed planting.",W/2,666);
     ctx.fillStyle="#5c7a3a";ctx.font=serif(30,true);
     ctx.fillText("Every funded tree is matched by a public, on-chain donation record.",W/2,738);
     var d=new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"});
