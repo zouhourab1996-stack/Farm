@@ -46,7 +46,7 @@
       url = next;
     }
     txs.sort(function (a, b) { return b.ts - a.ts; });
-    return { total: total, txs: txs };
+    return { total: total, txs: txs, truncated: !!url };
   }
 
   function when(ts) {
@@ -97,6 +97,8 @@
         treesEl.textContent = Math.floor(res.total / WALLET.seedling).toString();
         if (barEl) barEl.style.width = Math.min(100, (res.total / WALLET.goal) * 100) + "%";
         if (pctEl) pctEl.textContent = Math.min(100, Math.round((res.total / WALLET.goal) * 100)) + "% of the $5,000 first-grove goal";
+        var note = document.getElementById("grove-note");
+        if (note) note.innerHTML = (res.truncated ? "Showing up to 300 recent transfers. Full history: " : "Verify the public wallet history: ") + '<a href="' + TRONSCAN_ADDR + '" target="_blank" rel="noopener">Tronscan ↗</a>';
       }
       if (hasWall) {
         var wall = document.getElementById("grove-wall");
@@ -105,12 +107,15 @@
         } else {
           wall.innerHTML = res.txs.map(function (x) {
             var trees = x.v / WALLET.seedling;
-            var treesTxt = trees >= 1 ? Math.floor(trees) + " tree" + (Math.floor(trees) > 1 ? "s" : "") + " funded" : "seedling fund contribution";
+            var treesTxt = trees >= 1 ? Math.floor(trees) + " seedling equivalent" + (Math.floor(trees) > 1 ? "s" : "") : "seedling fund contribution";
             return '<div class="grove-entry"><span class="seed">🫒</span>' +
               '<div><div class="who" title="' + x.from + '">from ' + short(x.from) + ' · ' + when(x.ts) + '</div>' +
               '<div class="trees">' + treesTxt + ' · <a href="https://tronscan.org/#/transaction/' + x.id + '" target="_blank" rel="noopener">receipt on Tronscan ↗</a></div></div>' +
               '<div class="amt">' + fmt(x.v) + ' USDT</div></div>';
           }).join("");
+          if (res.truncated) {
+            wall.innerHTML += '<p class="small-note">Showing the latest 300 matching transfers returned by TronGrid. Open the public wallet on <a href="' + TRONSCAN_ADDR + '" target="_blank" rel="noopener">Tronscan</a> for the full history.</p>';
+          }
         }
       }
     } catch (e) {
